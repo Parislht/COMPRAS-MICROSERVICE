@@ -1,0 +1,26 @@
+/*CANTIDAD TOTAL VENDIDA POR LIBRO
+SELECT 
+  libro_id,
+  SUM(cantidad) AS total_unidades
+FROM "libreria-proyecto-prueba"."items-comprados-t-proyecto-prueba"
+GROUP BY libro_id
+ORDER BY total_unidades DESC;
+
+/*GASTO TOTAL POR USUSARIO
+SELECT 
+  username,
+  SUM(total) AS gasto_total
+FROM "libreria-proyecto-prueba"."compras-t-proyecto-prueba"
+GROUP BY username
+ORDER BY gasto_total DESC;
+
+/* Libros más comprados por un usuario específico
+SELECT 
+  i.libro_id,
+  SUM(i.cantidad) AS cantidad_total
+FROM "libreria-proyecto-prueba"."items-comprados-t-proyecto-prueba" i
+JOIN "libreria-proyecto-prueba"."compras-t-proyecto-prueba" c
+  ON i.compra_id = c.compra_id
+WHERE c.username = 'USUARIO1' /*CAMBIAR USUARIO DESEADO
+GROUP BY i.libro_id
+ORDER BY cantidad_total DESC;
