@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "tenant_id",
+    "Type": "string"
+  },
+  {
+    "Name": "username",
+    "Type": "string"
+  },
+  {
+    "Name": "compra_id",
+    "Type": "string"
+  },
+  {
+    "Name": "timestamp",
+    "Type": "string"
+  },
+  {
+    "Name": "total",
+    "Type": "double"
+  }
+]
