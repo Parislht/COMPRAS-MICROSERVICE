@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "compra_id",
+    "Type": "string"
+  },
+  {
+    "Name": "tenant_id",
+    "Type": "string"
+  },
+  {
+    "Name": "libro_id",
+    "Type": "string"
+  },
+  {
+    "Name": "cantidad",
+    "Type": "int"
+  }
+]
