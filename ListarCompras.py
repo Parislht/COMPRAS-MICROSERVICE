@@ -1,5 +1,6 @@
 import json
 import boto3
+import os
 
 dynamodb = boto3.client('dynamodb')
 lambda_client = boto3.client('lambda')
