@@ -1,0 +1,50 @@
+service: microservicio-compras
+org: parislht
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  memorySize: 1024
+  timeout: 30
+  stage: ${opt:stage, 'dev'}
+  iam:
+    role: arn:aws:iam::418047659300:role/LabRole
+  environment:
+    TABLE_NAME_PURCHASES: ${sls:stage}-t_compras
+    VALIDAR_TOKEN_FUNC: ${sls:stage}-ValidarTokenAcceso
+
+functions:
+  RegistrarCompra:
+    handler: src/compras/RegistrarCompra.handler
+    events:
+      - http:
+          path: compras/registrar
+          method: post
+          cors: true
+
+  ListarCompra:
+    handler: src/compras/ListarCompra.handler
+    events:
+      - http:
+          path: compras/listar
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    ComprasTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TABLE_NAME_PURCHASES}
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: username#compra_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: username#compra_id
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
