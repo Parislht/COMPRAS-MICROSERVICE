@@ -1,6 +1,7 @@
 import json
 import boto3
 import uuid
+import os
 from datetime import datetime
 
 # Inicializar clientes
@@ -8,7 +9,6 @@ dynamodb = boto3.client('dynamodb')
 lambda_client = boto3.client('lambda')
 
 def lambda_handler(event, context):
-    print("========== INICIO DE REGISTRARCOMPRA ==========")
     print("Evento recibido:", json.dumps(event))
 
     try:
@@ -38,7 +38,7 @@ def lambda_handler(event, context):
         print("Payload para ValidarTokenAcceso:", json.dumps(payload))
 
         response = lambda_client.invoke(
-            FunctionName="ValidarTokenAcceso-proyecto-prueba",#CAMBIAR NOMBRE DE FUNCION LAMBDA OFICIAL
+            FunctionName=os.environ['VALIDAR_TOKEN_FUNC'],#CAMBIAR NOMBRE DE FUNCION LAMBDA OFICIAL
             InvocationType="RequestResponse",
             Payload=json.dumps(payload)
         )
@@ -72,7 +72,7 @@ def lambda_handler(event, context):
         print("Item que se guardará en DynamoDB:", json.dumps(item))
 
         dynamodb.put_item(
-            TableName="t_compras_proyecto_prueba",
+            TableName=os.environ['TABLE_NAME_PURCHASES'],
             Item=item
         )
 
