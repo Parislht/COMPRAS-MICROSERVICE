@@ -1,5 +1,5 @@
 org: parislht
-service: api-compras
+service: microservicio-compras
 
 provider:
   name: aws
