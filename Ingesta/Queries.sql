@@ -21,6 +21,6 @@ SELECT
 FROM "proyecto-compras"."items-comprados-t" i
 JOIN "proyecto-compras"."compras-t" c
   ON i.compra_id = c.compra_id
-WHERE c.username = 'USUARIO1' /*CAMBIAR USUARIO DESEADO
+WHERE c.username = 'USUARIO1' /*CAMBIAR USUARIO DESEADO*/
 GROUP BY i.libro_id
 ORDER BY cantidad_total DESC;
