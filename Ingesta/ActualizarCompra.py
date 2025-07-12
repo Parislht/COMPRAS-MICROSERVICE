@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Cliente S3
 s3 = boto3.client('s3')
-BUCKET_NAME = 'compras-ingesta-proyecto-phlt' #CAMBIAR NOMBRE OFICIAL
+BUCKET_NAME = 'compras-ingesta-proyecto-phlt'
 
 def lambda_handler(event, context):
 
